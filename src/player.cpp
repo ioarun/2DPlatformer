@@ -6,8 +6,38 @@
 
 extern float accelGravity;
 extern float maxGravity;
+extern int numLevels;
 
-Player::Player(float X, float Y, float W, float H){
+// Player::Player(float X, float Y, float W, float H){
+// 	speed = 2.5f;
+// 	jumpHeight = 6.f;
+
+// 	x = X;
+// 	y = Y;
+// 	w = W;
+// 	h = H;
+
+// 	vertices.setPrimitiveType(sf::Quads);
+// 	vertices.resize(4);
+
+// 	vertices[0].position = sf::Vector2f(0, 0);
+// 	vertices[1].position = sf::Vector2f(W, 0);
+// 	vertices[2].position = sf::Vector2f(W, H);
+// 	vertices[3].position = sf::Vector2f(0, H);
+
+// 	vertices[0].texCoords = sf::Vector2f(0, 0);
+// 	vertices[1].texCoords = sf::Vector2f(W, 0);
+// 	vertices[2].texCoords = sf::Vector2f(W, H);
+// 	vertices[3].texCoords = sf::Vector2f(0, H);
+
+// 	// audio stuff
+// 	if(!soundBuffer.loadFromFile("data/audio/jump_small.wav"))
+// 			std::cout << "ERROR: Loading sound!" << std::endl;
+
+// 	sound.setBuffer(soundBuffer);
+// }
+
+void Player::init(float X, float Y, float W, float H){
 	speed = 2.5f;
 	jumpHeight = 6.f;
 
@@ -34,10 +64,10 @@ Player::Player(float X, float Y, float W, float H){
 			std::cout << "ERROR: Loading sound!" << std::endl;
 
 	sound.setBuffer(soundBuffer);
-
 }
 
-void Player::update(bool &W, bool &S, bool &A, bool &D, Platform level[10]){
+
+void Player::update(bool &W, bool &S, bool &A, bool &D, Platform level[8]){
 	// player controls
 	if(W and onGround){
 		velocity.y = jumpHeight * -1; // -ve is up +ve is down
@@ -66,8 +96,8 @@ void Player::update(bool &W, bool &S, bool &A, bool &D, Platform level[10]){
 	setPosition(x, y);
  }
 
- void Player::collide(float xvel, float yvel, Platform level[13]){
- 	for(int i = 0; i < 13; i++){
+ void Player::collide(float xvel, float yvel, Platform level[8]){
+ 	for(int i = 0; i < 8; i++){
  		if(x + 0.f < level[i].hitbox.right && 
  			x + w - 0.f > level[i].hitbox.left &&
  			y < level[i].hitbox.bottom &&

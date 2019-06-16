@@ -16,8 +16,9 @@ class Player : public Entity{
 		sf::Sound sound;
 
 	public:
-		Player(float X, float Y, float W, float H);
-		void update(bool &W, bool &S, bool &A, bool &D, Platform level[13]);
-		void collide(float xvel, float yvel, Platform level[13]);
+		// Player(float X, float Y, float W, float H);
+		void init(float X, float Y, float W, float H);
+		void update(bool &W, bool &S, bool &A, bool &D, Platform level[8]);
+		void collide(float xvel, float yvel, Platform level[8]);
 
 };
